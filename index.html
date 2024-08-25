@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RANDOM DIGIT GENERATOR</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #e0f7fa;
+      margin: 0;
+    }
+
+    .generator-container {
+      padding: 30px;
+      border: 1px solid #00796b;
+      border-radius: 12px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 350px;
+      width: 100%;
+    }
+
+    h2 {
+      color: #00796b;
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    input[type="number"] {
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 18px;
+      border-radius: 6px;
+      border: 1px solid #b2dfdb;
+      width: calc(100% - 24px);
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #00796b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #00796b;
+    }
+
+    /* Adding some smooth transition effects */
+    input[type="number"], button {
+      transition: all 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #00796b;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 400px) {
+      h2 {
+        font-size: 20px;
+      }
+
+      input[type="number"], button {
+        font-size: 16px;
+      }
+
+      .generator-container {
+        padding: 20px;
+      }
+
+      #result {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="generator-container">
+    <h2>RANDOM DIGIT GENERATOR</h2>
+    <input type="number" id="minValue" placeholder="Min Value" />
+    <input type="number" id="maxValue" placeholder="Max Value" />
+    <br>
+    <button id="generateButton">Generate Random Number</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const generateButton = document.getElementById('generateButton');
+    const result = document.getElementById('result');
+
+    generateButton.addEventListener('click', () => {
+      // Get the values from input boxes
+      const minValue = parseInt(document.getElementById('minValue').value);
+      const maxValue = parseInt(document.getElementById('maxValue').value);
+
+      // Validate the input
+      if (isNaN(minValue) || isNaN(maxValue)) {
+        result.textContent = 'Please enter valid numbers!';
+        return;
+      }
+
+      if (minValue >= maxValue) {
+        result.textContent = 'Min value should be less than Max value!';
+        return;
+      }
+
+      // Generate a random number between the given range
+      const randomNumber = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+
+      // Display the random number
+      result.textContent = `Random Number: ${randomNumber}`;
+    });
+  </script>
+
+</body>
+</html>
